@@ -1,12 +1,22 @@
 apiVersion: v1
-kind: Pod
+kind: apiVersion: apps/v1
+kind: Deployment
 metadata:
   name: myapp
-  labels:
-    app.kubernetes.io/name: myapp
 spec:
-  containers:
-  - name : myapp
-    image: httpd:alpine
-    ports:
-      - containerPort: 80
+  selector:
+    matchLabels:
+      app: myapp
+  template:
+    metadata:
+      labels:
+        app: myapp
+    spec:
+      containers:
+      - name: myapp
+        image: nginx
+        resources:
+        ports:
+        - containerPort: 80
+        - name: myapp
+        image: certbot/certbot:nightly
