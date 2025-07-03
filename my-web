@@ -23,6 +23,6 @@ spec:
         - containerPort: 80
         containers:
       - name : certbot
-        image: certbot/certbot:nightly
+        image: certbot/certbot
     
       
