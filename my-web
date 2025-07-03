@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: myapp
+  labels:
+    app.kubernetes.io/name: myapp
+spec:
+  containers:
+  - name : myapp
+    image: httpd:alpine
+    ports:
+      - containerPort: 80
