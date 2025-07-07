@@ -28,6 +28,31 @@ spec:
             cpu: "250m"
             memory: "256Mi"
 
+---
+apiVersion: autoscaling/v2beta1
+kind: HorizontalPodAutoscaler
+metadata:
+  name: my-autocale
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: nginx-autoscale
+  minReplicas: 1
+  maxReplicas: 5
+  metrics:
+  - type: Resource
+    resource:
+      name: cpu
+      target:
+        type: Utilization
+        averageUtilization: 50
+  - type: Resource
+    resource:
+      name: memmory
+      target:
+        type: Utilization
+        averageUtilization: 80
 
 
 ---
@@ -45,5 +70,5 @@ spec:
     - name      : app-listener
       protocol  : TCP
       port      : 80 #Port on load Balancer
-      targetPort: 80 #Port on Pod
-  type: NodePort
+      targetPort: 30080 #Port on Pod
+  type: LoadBalancer
