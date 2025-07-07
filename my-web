@@ -72,4 +72,4 @@ spec:
       port      : 80    #Port on load Balancer
       targetPort: 80 #Port on Pod
       nodePort  : 30080
-  type: nodePort
+  type: NodePort
