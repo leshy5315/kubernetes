@@ -49,7 +49,7 @@ spec:
         averageUtilization: 50
   - type: Resource
     resource:
-      name: memmory
+      name: memory
       target:
         type: Utilization
         averageUtilization: 80
@@ -65,10 +65,11 @@ metadata:
     owner: Lesyk
 spec:
   selector:
-    app: nginx       # Selecting PODS those Labels
+    app: nginx          # Selecting PODS those Labels
   ports:
     - name      : app-listener
       protocol  : TCP
-      port      : 80 #Port on load Balancer
-      targetPort: 30080 #Port on Pod
+      port      : 80    #Port on load Balancer
+      targetPort: 80 #Port on Pod
+      nodePort  : 30080
   type: LoadBalancer
