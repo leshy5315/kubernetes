@@ -6,7 +6,6 @@ metadata:
     app : nginx
     serv: certbot
 spec:
-  replicas: 3
   selector:
     matchLabels:
       app: nginx
@@ -38,7 +37,7 @@ spec:
     apiVersion: apps/v1
     kind: Deployment
     name: nginx-autoscale
-  minReplicas: 1
+  minReplicas: 2
   maxReplicas: 5
   metrics:
   - type: Resource
@@ -72,4 +71,4 @@ spec:
       port      : 80    #Port on load Balancer
       targetPort: 80 #Port on Pod
       nodePort  : 30080
-  type: NodePort
+  type: LoadBalancer
