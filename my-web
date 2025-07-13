@@ -69,6 +69,6 @@ spec:
     - name      : app-listener
       protocol  : TCP
       port      : 80    #Port on load Balancer
-      targetPort: 80 #Port on Pod
+      targetPort: 80    #Port on Pod
       nodePort  : 30080
   type: LoadBalancer
