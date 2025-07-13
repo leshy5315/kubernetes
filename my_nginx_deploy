@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
       - name : nginx
-        image: nginx:alpine
+        image: adv4000/k8sphp:version1
         ports:
         - containerPort: 80
         resources:
