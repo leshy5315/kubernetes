@@ -17,7 +17,7 @@ spec:
       - name : nginx
         image: nginx:alpine
         ports:
-        - containerPort: 80
+        - containerPort: 8080
         resources:
           requests:
             cpu: "100m"
