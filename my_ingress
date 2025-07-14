@@ -4,9 +4,9 @@ metadata:
   name: myingress
   annotations:
     cert-manager.io/cluster-issuer: "letsencrypt-prod"
-    acme.cert-manager.io/http01-ingress-class: "traefik"
+    acme.cert-manager.io/http01-ingress-class: "nginx"
 spec:
-  ingressClassName: traefik
+  ingressClassName: nginx
   tls:
   - hosts:
     - lesyk.d1ma-angel.com
