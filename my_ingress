@@ -4,6 +4,7 @@ metadata:
   name: myingress
   annotations:
     cert-manager.io/cluster-issuer: "letsencrypt-prod"
+    acme.cert-manager.io/http01-ingress-class: "traefik"
 spec:
   ingressClassName: traefik
   tls:
