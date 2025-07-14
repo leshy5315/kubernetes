@@ -5,7 +5,7 @@ metadata:
 spec:
   acme:
     email: leshy5315@gmail.com
-    server: https://acme-v02.api.letsencrypt.org/directory  # <<< ВАЖНО: production сервер
+    server: https://acme-v02.api.letsencrypt.org/directory
     privateKeySecretRef:
       name: letsencrypt-prod-account-key
     solvers:
