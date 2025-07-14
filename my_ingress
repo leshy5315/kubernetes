@@ -5,11 +5,11 @@ metadata:
   annotations:
     cert-manager.io/cluster-issuer: "letsencrypt-staging"
 spec:
+  ingressClassName: traefik
   tls:
   - hosts:
     - lesyk.d1ma-angel.com
-    secretName: lesyk-tls  # Добавь имя секрета для хранения сертификата
-  ingressClassName: traefik
+    secretName: lesyk-tls
   rules:
   - host: lesyk.d1ma-angel.com
     http:
