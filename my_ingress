@@ -2,15 +2,17 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: myingress
-  anotations:
+  annotations:
     cert-manager.io/cluster-issuer: "letsencrypt-staging"
 spec:
   tls:
   - hosts:
     - lesyk.d1ma-angel.com
+    secretName: lesyk-tls  # Добавь имя секрета для хранения сертификата
   ingressClassName: traefik
   rules:
-  - http:
+  - host: lesyk.d1ma-angel.com
+    http:
       paths:
       - pathType: Prefix
         path: /
