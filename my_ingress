@@ -15,7 +15,7 @@ spec:
     http:
       paths:
       - pathType: Prefix
-        paths: /
+        path: /
         backend:
           service:
             name: nginx-autoscale
