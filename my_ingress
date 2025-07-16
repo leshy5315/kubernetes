@@ -4,8 +4,8 @@ metadata:
   name: myingress
   annotations:
     cert-manager.io/cluster-issuer: "letsencrypt-prod"
-    nginx.ingress.kubernetes.io/force-ssl-redirect: "true"       # перенаправление HTTP → HTTPS
-    nginx.ingress.kubernetes.io/rewrite-target: /
+    nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
+    nginx.ingress.kubernetes.io/backend-protocol: "HTTP/1.1"
 spec:
   ingressClassName: nginx
   tls:
