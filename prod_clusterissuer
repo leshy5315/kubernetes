@@ -1,14 +1,25 @@
-apiVersion: cert-manager.io/v1
-kind: ClusterIssuer
+\apiVersion: networking.k8s.io/v1
+kind: Ingress
 metadata:
-  name: letsencrypt-prod
+  name: myingress
+  annotations:
+    cert-manager.io/cluster-issuer: "letsencrypt-prod"
+    nginx.ingress.kubernetes.io/force-ssl-redirect: "true"       # перенаправление HTTP → HTTPS
+    nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
-  acme:
-    email: leshy5315@gmail.com
-    server: https://acme-v02.api.letsencrypt.org/directory
-    privateKeySecretRef:
-      name: letsencrypt-prod-account-key
-    solvers:
-      - http01:
-          ingress:
-            ingressClassName: nginx
+  ingressClassName: nginx
+  tls:
+    - hosts:
+        - lesyk.d1ma-angel.com
+      secretName: lesyk-tls
+  rules:
+    - host: lesyk.d1ma-angel.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: nginx-autoscale
+                port:
+                  number: 80
