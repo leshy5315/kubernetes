@@ -12,7 +12,7 @@ spec:
     http:
       paths:
       - path: /.well-known/acme-challenge
-        pathType: Exact
+        pathType: Prefix
         backend:
           service:
             name: nginx-autoscale
