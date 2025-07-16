@@ -11,5 +11,4 @@ spec:
     solvers:
     - http01:
         ingress:
-          ingressClassName: nginx
-          pathType: Prefix
+          class: nginx
