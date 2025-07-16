@@ -11,6 +11,6 @@ spec:
         pathType: Prefix
         backend:
           service:
-            name: my_nginx_deploy
+            name: nginx-autoscale
             port:
               number: 80
