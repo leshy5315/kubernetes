@@ -7,8 +7,6 @@ spec:
   - host: lesyk.d1ma-angel.com
     http:
       paths:
-      - path: /
-        pathType: Prefix
         backend:
           service:
             name: nginx-autoscale
