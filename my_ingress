@@ -1,19 +1,25 @@
-  apiVersion: networking.k8s.io/v1
-  kind: Ingress
-  metadata:
-    name: myingress
-    labels:
-      app.kubernetes.io/name: myingress
-  spec:
-    ingressClassName: nginx
-    rules:
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: myingress
+  annotations:
+    cert-manager.io/cluster-issuer: "letsencrypt-prod"
+    nginx.ingress.kubernetes.io/force-ssl-redirect: "true"       # перенаправление HTTP → HTTPS
+    nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+  ingressClassName: nginx
+  tls:
+    - hosts:
+        - lesyk.d1ma-angel.com
+      secretName: lesyk-tls
+  rules:
     - host: lesyk.d1ma-angel.com
       http:
         paths:
-        - pathType: Prefix
-          path: "/"
-          backend:
-            service:
-              name: nginx-autoscale
-              port: 
-                number: 80
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: nginx-autoscale
+                port:
+                  number: 80
