@@ -7,8 +7,7 @@ spec:
   - host: lesyk.d1ma-angel.com
     http:
       paths:
-        backend:
-          service:
-            name: nginx-autoscale
-            port:
-              number: 80
+        - backend:
+            service:
+              serviceName: nginx-autoscale
+              servicePort: 80
