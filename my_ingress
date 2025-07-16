@@ -3,9 +3,9 @@ kind: Ingress
 metadata:
   name: ingress-hosts
   annotations:
-    kubernetes.io/ingress.class: nginx
     cert-manager.io/cluster-issuer: "letsencrypt-prod"
 spec:
+  ingressClassName: nginx
   tls:
   - hosts:
     - lesyk.d1ma-angel.com
