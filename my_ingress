@@ -6,7 +6,7 @@ metadata:
     cert-manager.io/cluster-issuer: "letsencrypt-prod"
     acme.cert-manager.io/http01-ingress-class: "nginx"
 spec:
-  ingressClassName: nginx
+  ingressClassName: traefik
   tls:
   - hosts:
     - lesyk.d1ma-angel.com
@@ -22,3 +22,4 @@ spec:
             name: nginx-autoscale
             port:
               number: 80
+  
