@@ -3,17 +3,18 @@ kind: Deployment
 metadata:
   name: nginx-autoscale
   labels:
-    app: nginx
+    app : nginx
+spec:
   selector:
     matchLabels:
       app: nginx
   template:
     metadata:
       labels:
-        app: nginx
+        app : nginx
     spec:
       containers:
-      - name: nginx
+      - name : nginx
         image: nginx:alpine
         ports:
         - containerPort: 80
@@ -24,7 +25,3 @@ metadata:
           limits:
             cpu: "250m"
             memory: "256Mi"
-      volumes:
-      - name: html
-        configMap:
-          name: nginx-html
