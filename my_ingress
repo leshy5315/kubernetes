@@ -6,7 +6,7 @@ metadata:
     app.kubernetes.io/name: myingress
 spec:
   rules:
-  - host: www.lesyk.d1ma-angel.com
+  - host: lesyk.d1ma-angel.com
     http:
       paths:
       - pathType: Prefix
@@ -15,4 +15,4 @@ spec:
           service:
             name: nginx-autoscale
             port: 
-              number: 80
+              number: 80 
