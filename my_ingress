@@ -2,8 +2,14 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: ingress-hosts
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-prod
 spec:
   ingressClassName: nginx
+  tls:
+  - hosts:
+    - lesyk.d1ma-angel.com
+    secretName: lesyk-tls
   rules:
   - host: lesyk.d1ma-angel.com
     http:
