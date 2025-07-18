@@ -3,6 +3,7 @@ kind: Ingress
 metadata:
   name: ingress-hosts
   annotations:
+    nginx.ingress.kubernetes.io/ssl-redirect: "false"
     cert-manager.io/cluster-issuer: letsencrypt-prod
 spec:
   ingressClassName: nginx
