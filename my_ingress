@@ -4,7 +4,10 @@ metadata:
   name: myingress
   labels:
     app.kubernetes.io/name: myingress
+  annotations:
+    kubernetes.io/ingress.class: nginx
 spec:
+  ingressClassName: nginx
   rules:
   - host: lesyk.d1ma-angel.com
     http:
@@ -14,5 +17,5 @@ spec:
         backend:
           service:
             name: nginx-autoscale
-            port: 
-              number: 80 
+            port:
+              number: 80
