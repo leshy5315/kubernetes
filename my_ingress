@@ -2,23 +2,17 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: myingress
-  annotations:
-    cert-manager.io/cluster-issuer: "letsencrypt-prod"
-    nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
+  labels:
+    app.kubernetes.io/name: myingress
 spec:
-  ingressClassName: nginx
-  tls:
-    - hosts:
-        - lesyk.d1ma-angel.com
-      secretName: lesyk-tls
   rules:
-    - host: lesyk.d1ma-angel.com
-      http:
-        paths:
-        - path: /
-          pathType: Prefix
-          backend:
-            service:
-              name: nginx-autoscale
-              port:
-                number: 80
+  - host: www.lesyk.d1ma-angel.com
+    http:
+      paths:
+      - pathType: Prefix
+        path: "/"
+        backend:
+          service:
+            name: nginx-autoscale
+            port: 
+              number: 80
