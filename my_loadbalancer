@@ -13,5 +13,5 @@ spec:
       protocol  : TCP
       port      : 80    #Port on load Balancer
       targetPort: 80    #Port on Pod
-      nodePort  : 30080
+      nodePort  : 80
   type: LoadBalancer
