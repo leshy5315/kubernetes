@@ -1,14 +1,16 @@
+# issuer-lets-encrypt-staging.yaml
 apiVersion: cert-manager.io/v1
-kind: ClusterIssuer
+kind: Issuer
 metadata:
-  name: letsencrypt-prod
+  name: letsencrypt-staging
 spec:
   acme:
+    server: https://acme-staging-v02.api.letsencrypt.org/directory
     email: leshy5315@gmail.com
-    server: https://acme-v02.api.letsencrypt.org/directory
+    profile: tlsserver
     privateKeySecretRef:
-      name: letsencrypt-prod
+      name: letsencrypt-staging
     solvers:
     - http01:
         ingress:
-          ingressClassName: nginx
+          name: web-ingress
