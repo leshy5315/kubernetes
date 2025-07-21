@@ -1,24 +1,15 @@
-apiVersion: networking.k8s.io/v1
-kind: Ingress
+apiVersion: cert-manager.io/v1
+kind: Issuer
 metadata:
-  name: ingress-hosts
-  annotations:
-    nginx.ingress.kubernetes.io/ssl-redirect: "false"
-    cert-manager.io/cluster-issuer: letsencrypt-prod
+  name: letsencrypt-staging
 spec:
-  ingressClassName: nginx
-  tls:
-  - hosts:
-    - lesyk.d1ma-angel.com
-    secretName: lesyk-tls
-  rules:
-  - host: lesyk.d1ma-angel.com
-    http:
-      paths:
-      - path: /
-        pathType: Prefix
-        backend:
-          service:
-            name: nginx-autoscale
-            port:
-              number: 80
+  acme:
+    server: https://acme-staging-v02.api.letsencrypt.org/directory
+    email: leshy5315@gmail.com
+    profile: tlsserver
+    privateKeySecretRef:
+      name: letsencrypt-staging
+    solvers:
+    - http01:
+        ingress:
+          name: web-ingress
