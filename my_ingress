@@ -3,10 +3,13 @@ kind: Ingress
 metadata:
   name: example-ingress
   annotations:
-    nginx.ingress.kubernetes.io/rewrite-target: /
-    cert-manager.io/cluster-issuer: letsencrypt-prod
+    kubernetis.io/ingress.class: traefik
+    cert-manager.io/cluster-issuer: letsencrypt-prod 
 spec:
-  ingressClassName: nginx
+  tls:
+  - hosts:
+    - lesyk.d1ma-angel.com
+    secretName: app-tls
   rules:
   - host: lesyk.d1ma-angel.com
     http:
@@ -15,10 +18,7 @@ spec:
         pathType: Prefix
         backend:
           service:
-            name: nginx-autoscale
+            name: my-deploy
             port:
               number: 80
-  tls:
-  - hosts:
-    - lesyk.d1ma-angel.com
-    secretName: ingress-tls
+ 
