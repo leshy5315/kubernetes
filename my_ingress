@@ -3,7 +3,7 @@ kind: Ingress
 metadata:
   name: example-ingress
   annotations:
-    kubernetis.io/ingress.class: traefik
+    nginx.ingress.kubernetes.io/rewrite-target: /
     cert-manager.io/cluster-issuer: letsencrypt-prod
     traefik.ingress.kubernetes.io/redirect-permanent: "true" 
 spec:
@@ -22,4 +22,7 @@ spec:
             name: my-deploy
             port:
               number: 80
- 
+  tls:
+  - hosts:
+    - lesyk.d1ma-angel.com
+    secretName: ingress-tls
