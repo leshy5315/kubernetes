@@ -4,6 +4,7 @@ metadata:
   name: example-ingress
   annotations:
     cert-manager.io/cluster-issuer: letsencrypt-prod
+    traefik.ingress.kubernetes.io/redirect-entry-point: https
 spec:
   ingressClassName: traefik
   tls:
