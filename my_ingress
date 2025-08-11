@@ -18,6 +18,6 @@ spec:
         pathType: Prefix
         backend:
           service:
-            name: my-deploy
+            name: myapp
             port:
               number: 80
