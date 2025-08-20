@@ -1,0 +1,22 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: block-ip-ingress
+  namespace: ssl-web
+  annotations:
+    traefik.ingress.kubernetes.io/router.entrypoints: web,websecure
+    traefik.ingress.kubernetes.io/router.priority: "1"  # низкий приоритет
+    traefik.ingress.kubernetes.io/router.middlewares: ssl-web-return-444@kubernetescrd
+spec:
+  ingressClassName: traefik
+  rules:
+  - hostRegexp: "{any:.+}"  # ловит все хосты
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: dummy-service  # любой несуществующий сервис
+            port:
+              number: 80
