@@ -1,9 +1,11 @@
 apiVersion: traefik.io/v1alpha1
 kind: Middleware
 metadata:
-  name: block-ip
+  name: block-invalid-host
   namespace: ssl-web
 spec:
-  headers:
-    customRequestHeaders:
-      X-Block-IP: "true"
+  redirectRegex:
+    regex: ^https?://.*$   # ловим все запросы
+    replacement: http://0.0.0.0 # несуществующий адрес
+    permanent: false
+
