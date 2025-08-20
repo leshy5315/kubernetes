@@ -1,3 +1,15 @@
+# --- Middleware ---
+apiVersion: traefik.io/v1alpha1
+kind: Middleware
+metadata:
+  name: block-invalid-host
+  namespace: ssl-web
+spec:
+  headers:
+    customRequestHeaders:
+      X-Block-IP: "true"
+---
+# --- Ingress ---
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
@@ -5,12 +17,12 @@ metadata:
   namespace: ssl-web
   annotations:
     cert-manager.io/cluster-issuer: letsencrypt-prod
-    traefik.ingress.kubernetes.io/router.middlewares: ssl-web-block-ip@kubernetescrd
+    traefik.ingress.kubernetes.io/router.middlewares: ssl-web-block-invalid-host@kubernetescrd
 spec:
   ingressClassName: traefik
   tls:
   - hosts:
-    - lesyk.d1ma-angel.com
+      - lesyk.d1ma-angel.com
     secretName: app-tls
   rules:
   - host: lesyk.d1ma-angel.com
