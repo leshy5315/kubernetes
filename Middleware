@@ -1,10 +1,9 @@
-apiVersion: traefik.io/v1alpha1
+apiVersion: traefik.containo.us/v1alpha1
 kind: Middleware
 metadata:
-  name: redirect-https
+  name: block-ip
   namespace: ssl-web
 spec:
-  redirectScheme:
-    scheme: https
-    port: "443"
-    permanent: true
+  headers:
+    customRequestHeaders:
+      X-Block-IP: "true"
