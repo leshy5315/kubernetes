@@ -4,9 +4,6 @@ metadata:
   name: return-444
   namespace: ssl-web
 spec:
-  headers:
-    customResponseHeaders:
-      X-Block-IP: "true"
   redirectRegex:
     regex: ^.*$
     replacement: http://0.0.0.0
