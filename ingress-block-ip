@@ -1,0 +1,17 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: block-ip
+  namespace: ssl-web
+spec:
+  entryPoints:
+    - web
+    - websecure
+  routes:
+    - match: HostRegexp(`{any:.+}`)
+      kind: Rule
+      services:
+        - name: dummy-service
+          port: 80
+      middlewares:
+        - name: return-444
